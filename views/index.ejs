@@ -7,6 +7,14 @@
   <title>Document</title>
 </head>
 <body>
-  warawit siriyong
+  <% if (locals.classes) { %>
+    <div>
+      <% Object.values(classes).forEach(function(classed) {%>
+        <h3><%= classed.title %> </h3> 
+        <p><%= classed.description %> </p>
+        <p><%= classed.instructor %> </p>
+      <% }) %> 
+    <div>
+  <% } %>
 </body>
 </html>
