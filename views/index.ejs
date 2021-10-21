@@ -7,14 +7,32 @@
   <title>Document</title>
 </head>
 <body>
-  <% if (locals.classes) { %>
-    <div>
-      <% Object.values(classes).forEach(function(classed) {%>
-        <h3><%= classed.title %> </h3> 
-        <p><%= classed.description %> </p>
-        <p><%= classed.instructor %> </p>
-      <% }) %> 
-    <div>
-  <% } %>
+  <%- include ('layout') %> 
+    <div class="container">
+      <div class="jumbotron bg-light">
+        <h1 class="display-4">E-Learning System</h1>
+        <p class="lead">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nihil placeat odit nemo similique, dolorem, beatae minima iure eaque aliquid optio, adipisci tenetur! Beatae deleniti harum commodi distinctio ut assumenda sunt?</p>
+        <hr class="my-4">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae omnis cupiditate fugit minima iure aliquid cumque quae rerum nulla eligendi iste ipsum ea ex nemo enim quasi accusantium, dignissimos nam?</p>
+        <a href="/users/register" class="btn btn-success btn-lg" role="button">สมัครเรียน</a>
+      </div>
+      <h3 align="center">คอร์สเรียน</h3>
+      <% if (locals.classes) { %>
+      <div class="row">
+        <% Object.values(classes).forEach(function(classed) {%>
+          <div class="col-sm-4">
+            <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title"><%= classed.title %></h5>
+                <h6 class="card-subtitle mb-2 text-muted"><%= classed.instructor %></h6>
+                <p class="card-text"><%= classed.description %></p>
+                <a href="#" class="btn btn-primary">เข้าเรียน</a>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    <% } %>
+  </div>
 </body>
 </html>
