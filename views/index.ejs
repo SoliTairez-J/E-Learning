@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>E-Learning System</title>
 </head>
 <body>
   <%- include ('layout') %> 
@@ -16,23 +16,31 @@
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae omnis cupiditate fugit minima iure aliquid cumque quae rerum nulla eligendi iste ipsum ea ex nemo enim quasi accusantium, dignissimos nam?</p>
         <a href="/users/register" class="btn btn-success btn-lg" role="button">สมัครเรียน</a>
       </div>
-      <h3 align="center">คอร์สเรียน</h3>
+      <% if (locals.user) { %>
+        <h3 align="center">คอร์สเรียน</h3>
       <% if (locals.classes) { %>
       <div class="row">
         <% Object.values(classes).forEach(function(classed) {%>
           <div class="col-sm-4">
-            <div class="card" style="width: 18rem;">
+            <div class="card" style="width: 18rem; margin-top: 10px;">
+              <img src="<%= classed.img_url %> " class="card-img-top">
               <div class="card-body">
                 <h5 class="card-title"><%= classed.title %></h5>
                 <h6 class="card-subtitle mb-2 text-muted"><%= classed.instructor %></h6>
                 <p class="card-text"><%= classed.description %></p>
-                <a href="#" class="btn btn-primary">เข้าเรียน</a>
+                <form action="/students/classes/register" method="post">
+                  <input type="hidden" name="student_username" value="<%= user.username %>"> 
+                  <input type="hidden" name="class_id" value="<%= classed.class_id %>"> 
+                  <input type="hidden" name="class_title" value="<%= classed.title %>"> 
+                  <input type="submit" class="btn btn-primary" value="เข้าเรียน">
+                </form>
               </div>
             </div>
           </div>
         <% }) %>
       </div>
     <% } %>
+      <% } %>
   </div>
 </body>
 </html>
